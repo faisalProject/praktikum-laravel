@@ -21,10 +21,12 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'email_verified_at',
         'password',
-        'remember_token'
     ];
+
+    public function phones() {
+        return $this->hasMany(Phone::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

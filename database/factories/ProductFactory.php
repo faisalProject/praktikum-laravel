@@ -17,10 +17,10 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            'product_name' => fake()->words(2, true),
+            'product_name' => fake()->words(3, true),
             'product_type' => 'snack',
             'product_price' => fake()->randomNumber(5, true),
-            'expired_at' => fake()->date()
+            'expired_at' => fake()->date(),
         ];
     }
 }

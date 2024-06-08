@@ -15,6 +15,29 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        Product::factory()->count(10)->create();
+        $products = [
+            [
+                'product_name' => 'Chitato Rasa Sapi Panggang',
+                // 'product_type' => 'snack',
+                'product_price' => 16000,
+                'expired_at' => '2024-12-12',
+            ],
+            [
+                'product_name' => 'Japota Sapi Panggang',
+                // 'product_type' => 'snack',
+                'product_price' => 16000,
+                'expired_at' => '2024-12-12',
+            ],
+            // [
+            //     'product_name' => 'Sprite Rasa Lemon',
+            //     'category_id' => 1,
+            //     'product_price' => 7000,
+            //     'expired_at' => '2024-12-12',
+            // ],
+        ];
+
+        foreach ( $products as $product ) {
+            Product::create( $product );
+        }
     }
 }
