@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Phone;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class ProductCT extends Controller
@@ -55,6 +56,8 @@ class ProductCT extends Controller
 
     public function showById( $id ) {
         $product = Product::find( $id );
+
+        $product = DB::select(" SELECT * FROM products WHERE id = $id ");
 
         if ( $product ) {
             return response()->json([

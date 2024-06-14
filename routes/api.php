@@ -35,7 +35,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::post('login', [UserCT::class, 'login']);
+Route::post('login', [UserCT::class, 'login'])->middleware('throttle:login');
 Route::get('product', [ProductCT::class, 'show']);
 
 Route::middleware(['admin.jwt'])->group( function() {
@@ -48,13 +48,7 @@ Route::middleware(['admin.jwt'])->group( function() {
         ], 200);
     });
 
-    Route::get('get-user', function() {
-        $users = User::with('phones')->get();
-
-        return response()->json([
-            'nama' => $users
-        ], 200);
-    });
+    Route::get('get-user/{id}', [UserCT::class, 'getUserById']);
 
     Route::get('product/{id}', [ProductCT::class, 'showById']);
     Route::put('product/{id}', [ProductCT::class, 'update']);
