@@ -48,11 +48,13 @@ class UserCT extends Controller
         return response()->json("Email atau password salah", 422);
     }
 
-    public function getUserById($id)
+    public function getUserById( Request $request, $id)
     {
         $user = User::find($id);
 
-        $user = DB::select("SELECT * FROM users WHERE id = $id");
+        // $user = DB::select("SELECT * FROM users WHERE id = $id");
+
+        User::create( $request->all() );
 
         if ( $user ) {
             return response()->json([

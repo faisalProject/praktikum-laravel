@@ -37,6 +37,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login', [UserCT::class, 'login'])->middleware('throttle:login');
 Route::get('product', [ProductCT::class, 'show']);
+Route::get('get-user/{id}', [UserCT::class, 'getUserById']);
 
 Route::middleware(['admin.jwt'])->group( function() {
     Route::post('product', [ProductCT::class, 'store']);
@@ -48,7 +49,6 @@ Route::middleware(['admin.jwt'])->group( function() {
         ], 200);
     });
 
-    Route::get('get-user/{id}', [UserCT::class, 'getUserById']);
 
     Route::get('product/{id}', [ProductCT::class, 'showById']);
     Route::put('product/{id}', [ProductCT::class, 'update']);
